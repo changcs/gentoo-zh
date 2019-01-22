@@ -2,9 +2,9 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI="2"
+EAPI=5
 
-inherit bash-completion gnome2-utils rpm versionator
+inherit bash-completion-r1 gnome2-utils rpm versionator
 
 DOWNLOAD_PAGE="http://www.bitdefender.com/site/Downloads/browseEvaluationVersion/2/80/"
 SRC_NAME_BASE="BitDefender-Antivirus-Scanner-$(replace_version_separator 2 '-').linux-gcc4x.ARCH.rpm.run"

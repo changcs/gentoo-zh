@@ -12,7 +12,7 @@ HOMEPAGE="https://github.com/WeCase/rpweibo"
 SRC_URI=""
 
 EGIT_HAS_SUBMODULE=0
-EGIT_REPO_URI="git://github.com/WeCase/rpweibo.git"
+EGIT_REPO_URI="https://github.com/WeCase/rpweibo.git"
 
 LICENSE="LGPL-3+"
 SLOT="0"
@@ -20,7 +20,8 @@ KEYWORDS=""
 IUSE=""
 
 DEPEND="${PYTHON_DEPS}
-		dev-python/pycurl[${PYTHON_USEDEP}]"
+		dev-python/pycurl[${PYTHON_USEDEP}]
+		dev-python/rsa[${PYTHON_USEDEP}]"
 RDEPEND="$DEPEND"
 
 python_install_all() {

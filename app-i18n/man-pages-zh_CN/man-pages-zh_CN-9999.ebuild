@@ -5,22 +5,27 @@
 EAPI="5"
 
 DESCRIPTION="A somewhat comprehensive collection of Chinese Linux man pages"
-HOMEPAGE="https://github.com/lidaobing/manpages-zh"
+HOMEPAGE="https://github.com/man-pages-zh/manpages-zh"
 
 RESTRICT="mirror"
 SRC_URL=""
 
-EGIT_HAS_SUBMODULES=0
-EGIT_REPO_URI="git://github.com/lidaobing/manpages-zh.git"
+EGIT_REPO_URI="https://github.com/man-pages-zh/manpages-zh"
 
 LICENSE="FDL-1.2"
 SLOT="0"
-KEYWORDS="alpha amd64 arm hppa ia64 m68k ~mips ppc ppc64 s390 sh sparc x86 ~amd64-linux ~ia64-linux ~x86-linux"
+KEYWORDS="~amd64"
 IUSE=""
 
-RDEPEND="virtual/man"
+RDEPEND="virtual/man
+	>=sys-apps/man-pages-3.83
+"
 
-inherit autotools git-2
+DEPEND="
+	app-i18n/opencc
+"
+
+inherit autotools git-r3
 
 src_prepare() {
 	eautoreconf

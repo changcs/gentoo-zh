@@ -2,13 +2,13 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI="2"
+EAPI=5
 
 inherit autotools git-2
 
 DESCRIPTION="An SCIM port of android Google Pinyin IME"
 HOMEPAGE="http://code.google.com/p/scim-googlepinyin/"
-EGIT_REPO_URI="git://github.com/tchaikov/${PN}.git"
+EGIT_REPO_URI="https://github.com/tchaikov/${PN}.git"
 
 LICENSE="Apache-2.0"
 SLOT="0"
