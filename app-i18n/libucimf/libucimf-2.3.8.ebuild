@@ -25,6 +25,7 @@ PDEPEND="sunpinyin? ( app-i18n/ucimf-sunpinyin )
 src_prepare() {
 	epatch "${FILESDIR}"/${PN}-unistd.patch
 	epatch "${FILESDIR}"/${PN}-Fix-GCC-6-error.patch
+	epatch "${FILESDIR}"/${PN}-input-event-codes.patch
 }
 
 src_install() {

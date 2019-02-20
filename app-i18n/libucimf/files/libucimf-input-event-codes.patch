@@ -1,0 +1,16 @@
+diff -uprN libucimf-2.3.8-orig/ucimf_keyboard libucimf-2.3.8/ucimf_keyboard
+--- libucimf-2.3.8-orig/ucimf_keyboard	2010-07-02 12:02:09.000000000 +0800
++++ libucimf-2.3.8/ucimf_keyboard	2019-02-20 21:01:47.080025917 +0800
+@@ -1,9 +1,9 @@
+ #!/bin/sh
+ # keys definition are in /usr/include/linux/input.h
+ 
+-SPACE=$(grep KEY_SPACE /usr/include/linux/input.h | sed -e 's/#define[[:blank:]]KEY_SPACE[[:blank:]]*\([[:digit:]]*\)/\1/g' )
+-LEFTSHIFT=$(grep KEY_LEFTSHIFT /usr/include/linux/input.h | sed -e 's/#define[[:blank:]]KEY_LEFTSHIFT[[:blank:]]*\([[:digit:]]*\)/\1/g' )
+-RIGHTSHIFT=$(grep KEY_RIGHTSHIFT /usr/include/linux/input.h | sed -e 's/#define[[:blank:]]KEY_RIGHTSHIFT[[:blank:]]*\([[:digit:]]*\)/\1/g' )
++SPACE=$(grep KEY_SPACE /usr/include/linux/input-event-codes.h | sed -e 's/#define[[:blank:]]KEY_SPACE[[:blank:]]*\([[:digit:]]*\)/\1/g' )
++LEFTSHIFT=$(grep KEY_LEFTSHIFT /usr/include/linux/input-event-codes.h | sed -e 's/#define[[:blank:]]KEY_LEFTSHIFT[[:blank:]]*\([[:digit:]]*\)/\1/g' )
++RIGHTSHIFT=$(grep KEY_RIGHTSHIFT /usr/include/linux/input-event-codes.h | sed -e 's/#define[[:blank:]]KEY_RIGHTSHIFT[[:blank:]]*\([[:digit:]]*\)/\1/g' )
+ 
+ if [ -n "$SPACE" -a -n " $LEFTSHIFT" -a -n "$RIGHTSHIFT" ]; then
+ 
