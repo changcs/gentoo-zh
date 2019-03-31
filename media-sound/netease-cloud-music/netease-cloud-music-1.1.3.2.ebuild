@@ -1,15 +1,15 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI=6
 
+inherit gnome2-utils xdg-utils
 DESCRIPTION="Netease cloud music player"
 HOMEPAGE="http://music.163.com"
-COMMON_URI="http://cdimage.deepin.com/applications/netease-cloud-music"
-MY_PN=${PN//-/_}
+COMMON_URI="http://packages.deepin.com/deepin/pool/main/n/netease-cloud-music"
+MY_PVR=${PVR//r/}
 SRC_URI="
-amd64? ( ${COMMON_URI}/64/${MY_PN}_${PV}_amd64_binary.tar.xz )
+amd64? ( ${COMMON_URI}/${PN}_${MY_PVR}_amd64.deb )
 "
 
 LICENSE=""
@@ -46,6 +46,7 @@ media-sound/pulseaudio
 >=x11-libs/libXrandr-1.2.99.3
 >=x11-libs/pango-1.14.0
 >x11-libs/libXcursor-1.1.2
+>=dev-qt/qcef-1.1.4
 x11-libs/libXScrnSaver
 x11-libs/libXext
 x11-libs/libXfixes
@@ -56,33 +57,26 @@ RDEPEND="${DEPEND}"
 
 S=${WORKDIR}
 
-src_install() {
-	insinto /usr/$(get_libdir)
-	doins -r ${S}/usr/lib/${PN}
-
-	insinto /usr/$(get_libdir)/${PN}/lib
-
-	doins ${S}/usr/lib/${PN}/lib/qcef/cef_extensions.pak
-	doins ${S}/usr/lib/${PN}/lib/qcef/icudtl.dat
-	doins ${S}/usr/lib/${PN}/lib/qcef/natives_blob.bin
-	doins ${S}/usr/lib/${PN}/lib/qcef/cef.pak
-	doins ${S}/usr/lib/${PN}/lib/qcef/snapshot_blob.bin
-	doins ${S}/usr/lib/${PN}/lib/qcef/chrome-sandbox
-	doins ${S}/usr/lib/${PN}/lib/qcef/cef_100_percent.pak
-	doins ${S}/usr/lib/${PN}/lib/qcef/cef_200_percent.pak
-
-	doins -r ${S}/usr/lib/${PN}/lib/qcef/locales
-
-	fperms 0755 -R /usr/$(get_libdir)/${PN}/lib/
-
-	dodir /usr/bin
-	exeinto /usr/bin
-	doexe ${FILESDIR}/${PN}
-
-	exeinto /usr/$(get_libdir)/${PN}/lib/
-	doexe ${S}/usr/bin/${PN}
-
-	insinto /usr/
-	doins -r ${S}/usr/share
+src_unpack() {
+	default_src_unpack
+	unpack ./data.tar.xz
+	rm -rf usr/share/doc || die
 }
 
+src_prepare() {
+	# solve destop tray in kde and gnome
+	eapply "${FILESDIR}"/desktop-tray.patch
+	eapply_user
+}
+
+src_install() {
+	cp -r usr "${D}"
+	cp ${FILESDIR}/netease-cloud-music.desktop ${D}/usr/share/applications/
+	cp ${FILESDIR}/netease-cloud-music-hidpi ${D}/usr/bin
+}
+
+pkg_postinst() {
+	gnome2_icon_cache_update
+	xdg_desktop_database_update
+	xdg_mimeinfo_database_update
+}
