@@ -14,12 +14,11 @@ SRC_URI="http://hyperrate.com/gcin-source/gcin-${PV}.tar.xz
 LICENSE="LGPL-2.1"
 SLOT="0"
 KEYWORDS="~x86 ~amd64"
-IUSE="filter-nobopomofo chinese-sound anthy chewing gtk3 qt4"
+IUSE="filter-nobopomofo chinese-sound anthy chewing gtk qt4"
 
 DEPEND=">=x11-libs/gtk+-2
 	anthy? ( >=app-i18n/anthy-9100 )
 	chewing? ( dev-libs/libchewing )
-	gtk3? ( x11-libs/gtk+:3 )
 	qt4? ( dev-qt/qtcore:4 dev-qt/qtgui )"
 RDEPEND="${DEPEND}
 	chinese-sound? ( media-sound/vorbis-tools[ogg123] )"
@@ -42,7 +41,7 @@ src_configure() {
 		$(! use anthy && echo --use_anthy=N ) \
 		$(! use chewing && echo --use_chewing=N ) \
 		$(! use qt4 && echo --use_qt4=N ) \
-		$(! use gtk3 && echo --use_gtk3=N )
+		--use_gtk3=N
 }
 
 src_compile() {
