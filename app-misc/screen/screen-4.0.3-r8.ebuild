@@ -18,7 +18,7 @@ KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~s
 IUSE="debug multiuser nethack pam selinux +tmpfiles"
 
 DEPEND=">=sys-libs/ncurses-5.2
-	pam? ( virtual/pam )"
+	pam? ( sys-libs/pam )"
 RDEPEND="${DEPEND}
 	selinux? ( sec-policy/selinux-screen )
 	!<sys-apps/openrc-0.11.6"
