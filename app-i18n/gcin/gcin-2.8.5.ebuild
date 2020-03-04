@@ -41,6 +41,7 @@ src_configure() {
 		$(! use anthy && echo --use_anthy=N ) \
 		$(! use chewing && echo --use_chewing=N ) \
 		$(! use qt4 && echo --use_qt4=N ) \
+		--use_qt5=N \
 		--use_gtk3=N
 }
 
